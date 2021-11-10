@@ -15,6 +15,7 @@ import com.github.tehras.charts.bar.BarChartUtils.barDrawableArea
 import com.github.tehras.charts.bar.BarChartUtils.forEachWithArea
 import com.github.tehras.charts.bar.renderer.bar.BarDrawer
 import com.github.tehras.charts.bar.renderer.bar.SimpleBarDrawer
+import com.github.tehras.charts.bar.renderer.label.EmptyValueDrawer
 import com.github.tehras.charts.bar.renderer.label.LabelDrawer
 import com.github.tehras.charts.bar.renderer.label.SimpleValueDrawer
 import com.github.tehras.charts.bar.renderer.xaxis.SimpleXAxisDrawer
@@ -32,7 +33,7 @@ fun BarChart(
   xAxisDrawer: XAxisDrawer = SimpleXAxisDrawer(),
   yAxisDrawer: YAxisDrawer = SimpleYAxisDrawer(),
   xLabelDrawer: LabelDrawer = SimpleValueDrawer(),
-  yLabelDrawer : LabelDrawer = SimpleValueDrawer()
+  yLabelDrawer : LabelDrawer = EmptyValueDrawer()
 ) {
   val transitionAnimation = remember(barChartData.bars) { Animatable(initialValue = 0f) }
 
