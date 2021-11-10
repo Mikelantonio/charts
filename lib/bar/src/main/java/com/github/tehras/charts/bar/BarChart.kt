@@ -31,7 +31,8 @@ fun BarChart(
   barDrawer: BarDrawer = SimpleBarDrawer(),
   xAxisDrawer: XAxisDrawer = SimpleXAxisDrawer(),
   yAxisDrawer: YAxisDrawer = SimpleYAxisDrawer(),
-  labelDrawer: LabelDrawer = SimpleValueDrawer()
+  xLabelDrawer: LabelDrawer = SimpleValueDrawer(),
+  yLabelDrawer : LabelDrawer = SimpleValueDrawer()
 ) {
   val transitionAnimation = remember(barChartData.bars) { Animatable(initialValue = 0f) }
 
@@ -49,7 +50,7 @@ fun BarChart(
           drawScope = this,
           totalSize = size,
           xAxisDrawer = xAxisDrawer,
-          labelDrawer = labelDrawer
+          labelDrawer = xLabelDrawer
         )
         val barDrawableArea = barDrawableArea(xAxisArea)
 
@@ -71,7 +72,7 @@ fun BarChart(
           this,
           barDrawableArea,
           progress,
-          labelDrawer
+          xLabelDrawer
         ) { barArea, bar ->
           barDrawer.drawBar(
             drawScope = this,
@@ -93,7 +94,7 @@ fun BarChart(
         drawScope = this,
         totalSize = size,
         xAxisDrawer = xAxisDrawer,
-        labelDrawer = labelDrawer
+        labelDrawer = xLabelDrawer
       )
       val barDrawableArea = barDrawableArea(xAxisArea)
 
@@ -101,15 +102,21 @@ fun BarChart(
         this,
         barDrawableArea,
         progress,
-        labelDrawer
+        xLabelDrawer
       ) { barArea, bar ->
-        labelDrawer.drawLabel(
+        xLabelDrawer.drawLabel(
           drawScope = this,
           canvas = canvas,
           label = bar.label,
           barArea = barArea,
           xAxisArea = xAxisArea
         )
+
+        yLabelDrawer.drawLabel(drawScope = this,
+          canvas = canvas,
+          label = bar.value.toString(),
+          barArea = barArea,
+          xAxisArea = xAxisArea)
       }
 
       yAxisDrawer.drawAxisLabels(

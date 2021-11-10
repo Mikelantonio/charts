@@ -134,7 +134,7 @@ private fun BarChartRow(barChartDataModel: BarChartDataModel) {
   ) {
     BarChart(
       barChartData = barChartDataModel.barChartData,
-      labelDrawer = barChartDataModel.labelDrawer
+      xLabelDrawer = barChartDataModel.labelDrawer
     )
   }
 }
